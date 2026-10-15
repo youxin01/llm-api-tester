@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#142725" />
+  <title data-i18n="Relay · API 工作台">Relay · API 工作台</title>
+  <link rel="stylesheet" href="/static/style.css?v=20261015-stream" />
+</head>
+<body>
+  <a class="skip-link" href="#main"><span data-i18n="跳到主要内容">跳到主要内容</span></a>
+  <svg class="svg-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6" height="6" rx="1.5"/><rect x="14.5" y="3.5" width="6" height="6" rx="1.5"/><rect x="3.5" y="14.5" width="6" height="6" rx="1.5"/><rect x="14.5" y="14.5" width="6" height="6" rx="1.5"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M16 6.5h2M16 17.5h2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 10a8 8 0 0 0-14-4L3 9m0-6v6h6M4 14a8 8 0 0 0 14 4l3-3m0 6v-6h-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h7m4 0h5M4 17h3m4 0h9"/><circle cx="13" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="9" r="5"/><path d="m11.5 12.5 8 8M16 17l2.5-2.5M18 19l2-2"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1 12-12-5-5L4 14Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4M12 17h.01"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4M8 15l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 3 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+  </svg>
+
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Relay API 工作台" data-i18n-aria-label="Relay API 工作台">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span class="brand-word">relay<span class="brand-period">.</span></span>
+    </a>
+    <div class="workspace-picker"><span class="workspace-icon">L</span><div><strong><span data-i18n="本地工作空间">本地工作空间</span></strong><span>Local workspace</span></div></div>
+    <div class="nav-label"><span data-i18n="工作空间">工作空间</span></div>
+    <nav id="sidebarNav" aria-label="主导航" data-i18n-aria-label="主导航">
+      <a class="nav-item active" href="#overview" aria-current="page" aria-label="工作台" data-i18n-aria-label="工作台"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span class="nav-text"><span data-i18n="工作台">工作台</span></span></a>
+      <a class="nav-item" href="#sites" aria-label="站点管理" data-i18n-aria-label="站点管理"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><span class="nav-text"><span data-i18n="站点管理">站点管理</span></span><span id="navEndpointCount" class="nav-count">0</span></a>
+      <a class="nav-item" href="#history" aria-label="测试记录" data-i18n-aria-label="测试记录"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="nav-text"><span data-i18n="测试记录">测试记录</span></span></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="privacy-note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><strong><span data-i18n="数据留在你的本机">数据留在你的本机</span></strong><p><span data-i18n="连接配置与测试记录">连接配置与测试记录</span><br><span data-i18n="由你自己掌握。">由你自己掌握。</span></p></div>
+      <div class="sidebar-footer"><span class="local-dot"></span><span><span data-i18n="本地部署">本地部署</span></span><span class="edition">LOCAL EDITION</span></div>
+    </div>
+  </aside>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="breadcrumb"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span><span data-i18n="工作空间">工作空间</span></span><span class="slash">/</span><strong><span data-i18n="API 工作台">API 工作台</span></strong></div>
+      <div class="top-actions">
+        <label class="language-picker"><span class="sr-only" data-i18n="界面语言">界面语言</span><select id="languageSelect" aria-label="界面语言" data-i18n-aria-label="界面语言"><option value="zh-CN">中文</option><option value="en">English</option></select></label>
+        <span id="connectionStatus" class="connection-status"><span class="dot"></span><span data-i18n="正在连接">正在连接</span></span>
+        <button id="refreshBtn" class="icon-btn" aria-label="刷新数据" data-i18n-aria-label="刷新数据" title="刷新数据" data-i18n-title="刷新数据"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></button>
+        <span class="toolbar-divider"></span>
+        <button id="helpBtn" class="icon-btn" aria-label="使用指南" data-i18n-aria-label="使用指南" title="使用指南" data-i18n-title="使用指南"><svg class="icon" aria-hidden="true"><use href="#i-help"/></svg></button>
+        <span class="user-avatar" aria-label="本地工作空间" data-i18n-aria-label="本地工作空间">L</span>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section id="overview" class="page-intro" aria-labelledby="pageTitle">
+        <div><h1 id="pageTitle"><span data-i18n="API 工作台">API 工作台</span><span class="title-dot"></span></h1><p><span data-i18n="管理连接，验证模型，定位问题。">管理连接，验证模型，定位问题。</span></p></div>
+        <div class="intro-actions"><button id="quickProbeBtn" class="btn secondary" title="只填 URL 和 Key 即可检测，无需保存" data-i18n-title="只填 URL 和 Key 即可检测，无需保存"><svg class="icon" aria-hidden="true"><use href="#i-pulse"/></svg><span data-i18n="快速检测连接">快速检测连接</span></button><button id="addEndpointBtn" class="btn primary"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span data-i18n="新增站点">新增站点</span></button></div>
+      </section>
+
+      <section class="stats-grid" aria-label="连接概览" data-i18n-aria-label="连接概览">
+        <div class="stat-card"><span><span data-i18n="全部站点">全部站点</span></span><strong id="totalEndpoints">0</strong></div>
+        <div class="stat-card"><span><span data-i18n="已启用">已启用</span></span><strong id="enabledEndpoints">0</strong></div>
+        <div class="stat-card" title="来自最近保存的测试，不代表实时监控" data-i18n-title="来自最近保存的测试，不代表实时监控"><span><span data-i18n="最近可用">最近可用</span></span><strong id="healthyEndpoints" aria-describedby="testedCaption">—</strong><span id="testedCaption" class="sr-only"><span data-i18n="还没有测试记录">还没有测试记录</span></span></div>
+        <div class="stat-card" title="各站点最近一次完整请求的平均耗时" data-i18n-title="各站点最近一次完整请求的平均耗时"><span><span data-i18n="平均耗时">平均耗时</span></span><strong id="averageLatency">—</strong></div>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="card test-card" aria-labelledby="testHeading">
+          <div class="section-head"><div class="section-title"><h2 id="testHeading"><span data-i18n="批量测试">批量测试</span></h2><span class="section-subtitle"><span data-i18n="同一条内容，并行测试多个站点">同一条内容，并行测试多个站点</span></span></div></div>
+          <div class="test-body">
+            <div class="prompt-label"><label for="prompt"><span data-i18n="测试内容">测试内容</span></label><div class="prompt-library"><div class="prompt-presets"><button id="promptPresetBtn" type="button" class="preset-btn"><span data-i18n="知识截止时间">知识截止时间</span></button><button id="pelicanPromptBtn" type="button" class="preset-btn"><span data-i18n="鹈鹕测试">鹈鹕测试</span></button><div id="customPromptButtons" class="prompt-presets"></div></div><button id="managePromptsBtn" type="button" class="preset-btn"><span data-i18n="自定义 Prompt">自定义 Prompt</span></button></div></div>
+            <textarea id="prompt" rows="3">不要联网搜索，你的模型知识库截止到什么时间？请只根据模型自身知识回答。</textarea>
+          <div class="test-controls"><details class="request-settings"><summary><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg><span data-i18n="请求参数">请求参数</span></summary><div class="inline-settings">
+            <label for="temperature">Temperature<input id="temperature" type="number" step="any" placeholder="默认" data-i18n-placeholder="默认"></label>
+            <label for="maxTokens"><span data-i18n="输出 Token 上限">输出 Token 上限</span><input id="maxTokens" type="number" min="1" step="1" placeholder="不限制" data-i18n-placeholder="不限制"></label>
+            <label for="reasoningEffort"><span data-i18n="思考程度">思考程度</span><select id="reasoningEffort"><option value="inherit" data-i18n="使用站点设置">使用站点设置</option><option value="" data-i18n="服务商默认">服务商默认</option><option value="none" data-i18n="关闭思考">关闭思考</option><option value="enabled" data-i18n="开启思考">开启思考</option><option value="minimal">minimal</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option><option value="xhigh">xhigh</option><option value="max">max</option></select></label>
+            <label for="streamMode"><span data-i18n="上游响应方式">上游响应方式</span><select id="streamMode"><option value="auto" data-i18n="使用站点设置">使用站点设置</option><option value="true" data-i18n="流式">流式</option><option value="false" data-i18n="非流式">非流式</option></select></label>
+            <label for="requestTimeout"><span data-i18n="本轮超时（秒）">本轮超时（秒）</span><input id="requestTimeout" type="number" min="0" step="any" value="0"></label>
+            <p class="field-help settings-help"><span data-i18n="输出留空不发送上限；超时 0 不限时，留空使用站点设置。模型自身仍有额度和长度限制。">输出留空不发送上限；超时 0 不限时，留空使用站点设置。模型自身仍有额度和长度限制。</span></p>
+          </div></details><div class="test-buttons"><button id="testSelectedBtn" class="btn secondary" title="测试所有已勾选站点，包括筛选外的选择" data-i18n-title="测试所有已勾选站点，包括筛选外的选择"><span data-i18n="测试选中">测试选中 </span><span id="selectedTestCount" class="button-count">0</span></button><button id="testAllBtn" class="btn primary" title="测试所有已启用的站点" data-i18n-title="测试所有已启用的站点"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg><span data-i18n="全部测试">全部测试</span></button></div></div>
+            <div id="testStatus" class="test-status" role="status" aria-live="polite"><span data-i18n="准备就绪，选择站点后即可开始测试。">准备就绪，选择站点后即可开始测试。</span></div>
+          </div>
+        </section>
+
+      </div>
+
+      <section id="testProgress" class="test-progress hidden" aria-labelledby="testProgressTitle">
+        <div class="progress-heading"><div class="progress-overview"><h2 id="testProgressTitle"><span data-i18n="测试进度">测试进度</span></h2><p id="testProgressSummary"></p></div><div class="progress-actions"><button id="testFailuresBtn" class="btn ghost hidden" aria-controls="testProgressList" aria-pressed="false"><span data-i18n="查看失败">查看失败</span></button><button id="testProgressToggle" class="btn ghost" aria-expanded="false" aria-controls="testProgressList"><span data-i18n="展开全部">展开全部</span></button></div><span id="testProgressCount" class="sr-only">0 / 0</span></div>
+        <progress id="testProgressBar" max="1" value="0" aria-label="站点测试完成进度" data-i18n-aria-label="站点测试完成进度"></progress>
+        <p id="testActiveSummary" class="test-active-summary hidden"></p>
+        <div id="testProgressList" class="test-progress-list hidden"></div>
+        <p id="testHistoryWarning" class="progress-warning hidden" role="status"></p>
+      </section>
+
+      <section id="sites" class="card endpoints-card" aria-labelledby="sitesHeading">
+        <div class="section-head"><div class="section-title"><h2 id="sitesHeading"><span data-i18n="我的站点">我的站点</span></h2><span id="endpointCount" class="count-badge">0</span></div><span class="section-subtitle"><span data-i18n="连接你的模型世界">连接你的模型世界</span></span></div>
+        <div class="table-toolbar"><div class="search-field"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="endpointSearch"><span data-i18n="搜索站点">搜索站点</span></label><input id="endpointSearch" type="search" placeholder="搜索站点、URL 或模型…" data-i18n-placeholder="搜索站点、URL 或模型…" autocomplete="off"></div><div class="view-toolbar"><div class="filter-field"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg><label class="sr-only" for="endpointFilter"><span data-i18n="筛选站点">筛选站点</span></label><select id="endpointFilter"><option value="all" data-i18n="全部站点">全部站点</option><option value="enabled" data-i18n="已启用">已启用</option><option value="ok" data-i18n="最近可用">最近可用</option><option value="failed" data-i18n="最近失败">最近失败</option><option value="untested" data-i18n="未测试">未测试</option></select></div><div class="view-switch" role="group" aria-label="站点显示方式" data-i18n-aria-label="站点显示方式"><button id="listViewBtn" type="button" aria-pressed="true" title="列表：显示完整连接信息" data-i18n-title="列表：显示完整连接信息"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span data-i18n="列表">列表</span></button><button id="cardViewBtn" type="button" aria-pressed="false" title="卡片：仅显示关键信息" data-i18n-title="卡片：仅显示关键信息"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span data-i18n="卡片">卡片</span></button></div></div></div>
+        <div id="endpointListView" class="table-wrap"><table id="endpointTable"><thead><tr><th class="check-cell"><input id="selectAll" type="checkbox" checked aria-label="选择当前列表全部站点" data-i18n-aria-label="选择当前列表全部站点"></th><th><span data-i18n="站点 / 接口地址">站点 / 接口地址</span></th><th><span data-i18n="模型">模型</span></th><th><span data-i18n="连接状态">连接状态</span></th><th><span data-i18n="响应时间">响应时间</span></th><th class="actions-heading"><span data-i18n="操作">操作</span></th></tr></thead><tbody id="endpointBody"><tr><td colspan="6" class="empty"><span data-i18n="正在加载站点…">正在加载站点…</span></td></tr></tbody></table></div>
+        <div id="endpointCardView" class="hidden"><label class="card-select-all"><input id="cardSelectAll" type="checkbox"><span data-i18n="选择当前结果全部站点">选择当前结果全部站点</span></label><div id="endpointCards" class="endpoint-cards"></div></div>
+        <div class="table-footer"><span id="selectionCount"><span data-i18n="已选中 0 个站点">已选中 0 个站点</span></span><span id="visibleCount" class="muted"><span data-i18n="共 0 个站点">共 0 个站点</span></span></div>
+      </section>
+
+      <section id="history" class="card history-card" aria-labelledby="historyHeading">
+        <div class="section-head"><div class="section-title"><h2 id="historyHeading"><span data-i18n="最近测试">最近测试</span></h2><span id="historyCount" class="count-badge">0</span></div><button id="clearHistoryBtn" class="btn ghost danger"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg><span data-i18n="清空记录">清空记录</span></button></div>
+        <div class="table-wrap"><table class="history-table"><thead><tr><th><span data-i18n="测试时间">测试时间</span></th><th><span data-i18n="站点 / 模型">站点 / 模型</span></th><th><span data-i18n="测试结果">测试结果</span></th><th>HTTP</th><th><span data-i18n="耗时">耗时</span></th><th><span data-i18n="回复 / 错误详情">回复 / 错误详情</span></th></tr></thead><tbody id="historyBody"><tr><td colspan="6" class="empty"><span data-i18n="暂无测试记录">暂无测试记录</span></td></tr></tbody></table></div>
+      </section>
+      <footer class="page-footer"><span class="footer-brand">relay.</span><span><span data-i18n="让模型连接，更简单。">让模型连接，更简单。</span></span><span class="footer-local"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span data-i18n="本地运行 · 数据自主">本地运行 · 数据自主</span></span></footer>
+    </main>
+  </div>
+
+  <dialog id="endpointDialog" aria-labelledby="dialogTitle">
+    <form id="endpointForm" method="dialog">
+      <div class="dialog-head"><div class="section-title"><span class="section-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg></span><div><h2 id="dialogTitle"><span data-i18n="新增站点">新增站点</span></h2><p><span data-i18n="配置连接，开始探索你的模型。">配置连接，开始探索你的模型。</span></p></div></div><button type="button" id="closeDialogBtn" class="icon-btn" aria-label="关闭站点配置" data-i18n-aria-label="关闭站点配置"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <input id="endpointId" type="hidden" />
+      <div class="dialog-body">
+        <div class="form-grid">
+          <div class="field"><label for="name"><span data-i18n="站点名称">站点名称 </span><span class="required">*</span></label><input id="name" required maxlength="100" placeholder="例如：我的 DeepSeek 接口" data-i18n-placeholder="例如：我的 DeepSeek 接口" autofocus></div>
+          <div class="field"><label for="baseUrl">Base URL <span class="required">*</span></label><input id="baseUrl" required placeholder="https://example.com/v1" spellcheck="false"></div>
+          <div class="field span-2"><label for="apiKey">API Key</label><div class="key-row"><input id="apiKey" type="password" autocomplete="off" spellcheck="false" aria-describedby="apiKeyHint apiKeyMessage" placeholder="输入密钥；编辑时留空表示保留原 Key" data-i18n-placeholder="输入密钥；编辑时留空表示保留原 Key"><button id="toggleApiKeyBtn" type="button" class="btn secondary" aria-controls="apiKey" aria-pressed="false"><span data-i18n="显示">显示</span></button><button id="copyApiKeyBtn" type="button" class="btn secondary"><span data-i18n="复制">复制</span></button></div><span id="apiKeyHint" class="field-help"><span data-i18n="已保存的 Key 也可查看、复制；输入新 Key 后保存即可替换。">已保存的 Key 也可查看、复制；输入新 Key 后保存即可替换。</span></span><span id="apiKeyMessage" class="field-help key-message" role="status" aria-live="polite"></span></div>
+          <div class="field span-2"><label for="model"><span data-i18n="测试模型">测试模型 </span><span class="required">*</span></label><div class="model-row"><input id="model" required placeholder="gpt-5.6-sol / deepseek-chat / qwen-plus"><button id="fetchModelsBtn" type="button" class="btn secondary"><svg class="icon" aria-hidden="true"><use href="#i-pulse"/></svg><span data-i18n="检测 Key / 模型">检测 Key / 模型</span></button></div><select id="modelSelect" class="hidden" aria-label="选择检测到的模型" data-i18n-aria-label="选择检测到的模型"></select><span class="field-help"><span data-i18n="填入 URL 和 Key 即可检测，无需先保存站点。">填入 URL 和 Key 即可检测，无需先保存站点。</span></span></div>
+        </div>
+        <details id="advancedSettings" class="disclosure advanced-settings"><summary><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg><span><span data-i18n="高级连接设置">高级连接设置</span></span><span class="optional-label"><span data-i18n="路径、超时、Headers">路径、超时、Headers</span></span><svg class="icon disclosure-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="disclosure-body form-grid"><div class="field"><label for="chatPath">Chat Path</label><input id="chatPath" value="/v1/chat/completions" spellcheck="false"></div><div class="field"><label for="modelsPath">Models Path</label><input id="modelsPath" value="/v1/models" spellcheck="false"></div><div class="field"><label for="timeoutSeconds"><span data-i18n="请求超时（秒）">请求超时（秒）</span></label><input id="timeoutSeconds" type="number" min="0" step="any" value="30"></div><div class="field"><label for="endpointReasoningEffort"><span data-i18n="默认思考程度">默认思考程度</span></label><select id="endpointReasoningEffort"><option value="" data-i18n="服务商默认">服务商默认</option><option value="none" data-i18n="关闭思考">关闭思考</option><option value="enabled" data-i18n="开启思考">开启思考</option><option value="minimal">minimal</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option><option value="xhigh">xhigh</option><option value="max">max</option></select></div>
+          <div class="field"><label for="reasoningParameter"><span data-i18n="思考参数格式">思考参数格式</span></label><select id="reasoningParameter"><option value="auto" data-i18n="自动匹配">自动匹配</option><option value="reasoning_effort">reasoning_effort</option><option value="thinking">thinking.type</option><option value="enable_thinking">enable_thinking</option></select></div>
+          <div class="field"><label for="endpointStreamMode"><span data-i18n="上游响应方式">上游响应方式</span></label><select id="endpointStreamMode"><option value="auto" data-i18n="自动匹配">自动匹配</option><option value="true" data-i18n="流式">流式</option><option value="false" data-i18n="非流式">非流式</option></select></div>
+          <div class="field"><label for="tokenParameter"><span data-i18n="输出长度参数">输出长度参数</span></label><select id="tokenParameter"><option value="auto" data-i18n="自动匹配">自动匹配</option><option value="max_tokens">max_tokens</option><option value="max_completion_tokens">max_completion_tokens</option></select></div>
+          <p id="endpointReasoningHint" class="field-help span-2" role="status"></p><p class="field-help span-2"><span data-i18n="服务商默认不发送思考参数。开关型接口仅支持开启或关闭；不同模型支持的档位不同，不能通用套用。LongCat 自动使用流式收集结果。">服务商默认不发送思考参数。开关型接口仅支持开启或关闭；不同模型支持的档位不同，不能通用套用。LongCat 自动使用流式收集结果。</span></p><div class="field span-2"><label for="extraHeaders"><span data-i18n="额外 Headers">额外 Headers </span><span class="optional-label"><span data-i18n="JSON，可选">JSON，可选</span></span></label><textarea id="extraHeaders" rows="3" placeholder='例如：{"X-API-Key":"xxx"}' data-i18n-placeholder='例如：{"X-API-Key":"xxx"}' spellcheck="false">{}</textarea></div></div></details>
+        <div id="dialogMessage" class="dialog-message" role="status" aria-live="polite"></div>
+      </div>
+      <div class="dialog-actions"><label class="enable-label"><input id="enabled" type="checkbox" checked><span><span data-i18n="启用站点">启用站点</span><small><span data-i18n="参与全部测试">参与全部测试</span></small></span></label><div><button type="button" id="cancelBtn" class="btn secondary"><span data-i18n="取消">取消</span></button><button id="saveEndpointBtn" type="submit" class="btn primary"><span data-i18n="保存站点">保存站点</span></button></div></div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog" aria-labelledby="detailTitle">
+    <div class="dialog-head"><h2 id="detailTitle"><span data-i18n="测试详情">测试详情</span></h2><button type="button" id="closeDetailBtn" class="icon-btn" aria-label="关闭测试详情" data-i18n-aria-label="关闭测试详情"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div id="testResultSummary" class="result-summary hidden"><h3 id="detailOutcome"></h3><p id="detailAdvice"></p><dl id="detailFacts" class="detail-facts"></dl><div class="detail-message-heading"><strong id="detailMessageLabel"><span data-i18n="接口返回">接口返回</span></strong><div><button id="detailPreviewBtn" type="button" class="btn secondary hidden"><span data-i18n="预览 HTML / SVG">预览 HTML / SVG</span></button><button id="detailEditBtn" class="btn secondary"><span data-i18n="编辑连接">编辑连接</span></button><button id="detailCopyBtn" class="btn secondary"><span data-i18n="复制报错">复制报错</span></button></div></div><pre id="detailMessage"></pre><details id="detailPartial" class="reasoning-details hidden"><summary><span data-i18n="已收到的部分回复">已收到的部分回复</span></summary><pre id="detailPartialContent"></pre></details><details id="detailReasoning" class="reasoning-details hidden"><summary><span data-i18n="模型返回的思考内容">模型返回的思考内容</span></summary><pre id="detailReasoningContent"></pre></details><p id="detailCopyStatus" role="status" aria-live="polite"></p></div>
+    <details id="rawDetails" class="raw-details"><summary><span data-i18n="原始结果 / 技术详情">原始结果 / 技术详情</span></summary><pre id="detailContent"></pre></details>
+  </dialog>
+
+  <dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-head"><div><div class="eyebrow">GETTING STARTED</div><h2 id="helpTitle"><span data-i18n="三步，了解你的模型连接">三步，了解你的模型连接</span></h2></div><button id="closeHelpBtn" type="button" class="icon-btn" aria-label="关闭使用指南" data-i18n-aria-label="关闭使用指南"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div><div class="help-body"><div class="help-step"><span>01</span><div><h3><span data-i18n="添加一个连接">添加一个连接</span></h3><p><span data-i18n="手动填入站点名称、接口地址、API Key 和模型名称，然后保存。">手动填入站点名称、接口地址、API Key 和模型名称，然后保存。</span></p></div></div><div class="help-step"><span>02</span><div><h3><span data-i18n="检测密钥与模型">检测密钥与模型</span></h3><p><span data-i18n="点击「检测 Key / 模型」列举模型。部分服务不支持模型列表，可填入已知模型保存后进行测试。">点击「检测 Key / 模型」列举模型。部分服务不支持模型列表，可填入已知模型保存后进行测试。</span></p></div></div><div class="help-step"><span>03</span><div><h3><span data-i18n="一起测试，逐一确认">一起测试，逐一确认</span></h3><p><span data-i18n="勾选站点后批量发送同一条 Prompt，点击站点的可用或失败状态查看最近结果；更早的结果保留在测试记录中。">勾选站点后批量发送同一条 Prompt，点击站点的可用或失败状态查看最近结果；更早的结果保留在测试记录中。</span></p></div></div><button id="helpAddBtn" class="btn primary"><span data-i18n="添加第一个连接">添加第一个连接</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></dialog>
+
+
+  <dialog id="promptDialog" aria-labelledby="promptDialogTitle">
+    <form id="promptForm" method="dialog">
+      <div class="dialog-head"><h2 id="promptDialogTitle" data-i18n="自定义 Prompt">自定义 Prompt</h2><button id="closePromptBtn" type="button" class="icon-btn" aria-label="关闭 Prompt 编辑" data-i18n-aria-label="关闭 Prompt 编辑"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <div class="dialog-body prompt-editor-body">
+        <div class="field"><label for="promptEditorSelect" data-i18n="选择要编辑的 Prompt">选择要编辑的 Prompt</label><select id="promptEditorSelect"></select></div>
+        <div class="field"><label for="promptName" data-i18n="Prompt 名称">Prompt 名称</label><input id="promptName" required placeholder="例如：代码审查" data-i18n-placeholder="例如：代码审查"></div>
+        <div class="field"><label for="promptContent" data-i18n="Prompt 内容">Prompt 内容</label><textarea id="promptContent" required rows="8"></textarea></div>
+        <p class="field-help" data-i18n="保存后会出现在上方快捷按钮中；自定义 Prompt 保存在当前浏览器。">保存后会出现在上方快捷按钮中；自定义 Prompt 保存在当前浏览器。</p>
+        <p id="promptMessage" class="dialog-message" role="status" aria-live="polite"></p>
+      </div>
+      <div class="dialog-actions"><button id="deletePromptBtn" type="button" class="btn ghost danger" data-i18n="删除 Prompt">删除 Prompt</button><div><button id="cancelPromptBtn" type="button" class="btn secondary" data-i18n="取消">取消</button><button type="submit" class="btn primary" data-i18n="保存并使用">保存并使用</button></div></div>
+    </form>
+  </dialog>
+
+  <dialog id="previewDialog" aria-labelledby="previewTitle">
+    <div class="dialog-head"><h2 id="previewTitle" data-i18n="生成结果预览">生成结果预览</h2><div class="preview-actions"><button id="previewRenderBtn" type="button" class="btn secondary" aria-pressed="true" data-i18n="预览">预览</button><button id="previewSourceBtn" type="button" class="btn secondary" aria-pressed="false" data-i18n="源代码">源代码</button><button id="downloadHtmlBtn" type="button" class="btn secondary" data-i18n="下载 HTML">下载 HTML</button><button id="closePreviewBtn" type="button" class="icon-btn" aria-label="关闭预览" data-i18n-aria-label="关闭预览"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></div>
+    <iframe id="previewFrame" title="HTML / SVG 预览" data-i18n-title="HTML / SVG 预览" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+    <pre id="previewSource" class="hidden"></pre>
+  </dialog>
+
+  <script src="/static/i18n.js?v=20261015-stream"></script>
+  <script src="/static/app.js?v=20261015-stream"></script>
+</body>
+</html>

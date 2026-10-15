@@ -1,0 +1,23 @@
+__pycache__/
+.venv/
+*.pyc
+# Personal launch shortcuts (not published)
+/start.bat
+/start.sh
+# Local credentials, responses and backups
+/data/
+.env
+.env.*
+!.env.example
+
+# Private screenshots and local agent work records
+/artifacts/
+/.agents/
+/AGENTS.md
+/task_plan.md
+/findings.md
+/progress.md
+
+# Desktop metadata
+.DS_Store
+Thumbs.db
