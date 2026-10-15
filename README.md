@@ -56,7 +56,7 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-浏览器打开 **http://127.0.0.1:8765**。若系统使用 `python3`，替换命令中的 `python` 即可。
+浏览器打开 [http://127.0.0.1:8765](http://127.0.0.1:8765)。若系统使用 `python3`，替换命令中的 `python` 即可。
 
 ## 使用方法
 

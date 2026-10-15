@@ -57,7 +57,7 @@ python -m pip install -r requirements.txt
 python app.py
 ```
 
-Open **http://127.0.0.1:8765**. If your system uses `python3`, replace `python` accordingly.
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765). If your system uses `python3`, replace `python` accordingly.
 
 ## Usage
 
